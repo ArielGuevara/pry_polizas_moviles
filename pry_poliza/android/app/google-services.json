@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "253185944877",
+    "project_id": "polizaspry",
+    "storage_bucket": "polizaspry.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253185944877:android:5528e88b9eb1ff5b1ab7a4",
+        "android_client_info": {
+          "package_name": "com.example.pry_poliza"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlsa13eD8bmzcWL4spmWJBD0Em5gLGf60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
