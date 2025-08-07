@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../viewmodels/drawer_viewmodel.dart';
 import '../viewmodels/poliza_viewmodel.dart';
+import 'drawer_view.dart';
 import 'usuarios_view.dart';
 import '../services/poliza_service.dart';
 import '../models/poliza_model.dart';
@@ -28,12 +30,13 @@ class _PolizaViewState extends State<PolizaView> {
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<PolizaViewModel>(context);
-
+    final vm2 = Provider.of<DrawerViewModel>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Crear Póliza", style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.teal,
       ),
+      drawer: DrawerView(),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
           if (index == 2) {

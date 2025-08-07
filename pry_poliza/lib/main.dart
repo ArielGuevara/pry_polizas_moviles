@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:pry_poliza/viewmodels/drawer_viewmodel.dart';
 import 'package:pry_poliza/viewmodels/poliza_viewmodel.dart';
 import 'package:pry_poliza/viewmodels/usuario_viewmodel.dart';
 import 'package:pry_poliza/views/login_view.dart';
@@ -20,6 +21,7 @@ void main() async {
         providers: [
           ChangeNotifierProvider(create: (_) => PolizaViewModel()),
           ChangeNotifierProvider(create: (_) => UsuarioViewModel()),
+          ChangeNotifierProvider(create: (_) => DrawerViewModel()),
         ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
