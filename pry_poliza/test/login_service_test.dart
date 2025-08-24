@@ -1,4 +1,3 @@
-// test/login_service_test.dart
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pry_poliza/services/login_service.dart';
 
@@ -10,12 +9,24 @@ void main() {
       expect(service.validarEmail(''), 'El correo electrónico no puede estar vacío');
     });
 
-    test('Email inválido', () {
-      expect(service.validarEmail('correo@invalido'), 'Ingrese un correo electrónico válido');
+    test('Email nulo', () {
+      expect(service.validarEmail(null), 'El correo electrónico no puede estar vacío');
+    });
+
+    test('Email inválido sin @', () {
+      expect(service.validarEmail('correosinArroba'), 'Ingrese un correo electrónico válido');
+    });
+
+    test('Email inválido sin dominio', () {
+      expect(service.validarEmail('correo@'), 'Ingrese un correo electrónico válido');
     });
 
     test('Email válido', () {
       expect(service.validarEmail('test@email.com'), null);
+    });
+
+    test('Email válido con subdominios', () {
+      expect(service.validarEmail('usuario@empresa.com.ec'), null);
     });
   });
 
@@ -24,12 +35,20 @@ void main() {
       expect(service.validarClave(''), 'La contraseña no puede estar vacía');
     });
 
-    test('Clave corta', () {
+    test('Clave nula', () {
+      expect(service.validarClave(null), 'La contraseña no puede estar vacía');
+    });
+
+    test('Clave muy corta (7 caracteres)', () {
       expect(service.validarClave('1234567'), 'La contraseña debe tener al menos 8 caracteres');
     });
 
-    test('Clave válida', () {
+    test('Clave válida (8 caracteres)', () {
       expect(service.validarClave('12345678'), null);
+    });
+
+    test('Clave válida (más de 8 caracteres)', () {
+      expect(service.validarClave('contraseñaSegura123'), null);
     });
   });
 }

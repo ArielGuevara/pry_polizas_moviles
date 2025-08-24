@@ -53,6 +53,7 @@ class LoginPageState extends State<LoginView> {
                   // Icon(Icons.person, size: 100, color: Colors.white),
                   SizedBox(height: 20),
                   TextFormField(
+                    key: ValueKey('email_field'), // ValueKey para pruebas
                     controller: _emailController,
                     style: AppTextStyles.input,
                     decoration: InputDecoration(
@@ -70,6 +71,7 @@ class LoginPageState extends State<LoginView> {
                   ),
                   SizedBox(height: 20),
                   TextFormField(
+                    key: ValueKey('password_field'), // ValueKey para pruebas
                     controller: _claveController,
                     obscureText: _obscureText,
                     style: AppTextStyles.input,
@@ -142,6 +144,7 @@ class LoginPageState extends State<LoginView> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         ElevatedButton(
+                          key: ValueKey('login_button'), // ValueKey para pruebas
                           style: AppButtonStyles.signIn(context),
                           onPressed: _isLoading
                               ? null

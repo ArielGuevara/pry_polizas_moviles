@@ -58,39 +58,40 @@ class _PolizaViewState extends State<PolizaView> {
             _buildInput("Propietario", _propietarioController, (val) {
               vm.propietario = val;
               vm.notifyListeners();
-            }),
+            }, key: ValueKey('propietario_field')),
             const SizedBox(height: 12),
             _buildInput("Valor del seguro", _valorController, (val) {
               final number = double.tryParse(val) ?? 0;
               vm.valorAlquiler = number < 0 ? 0 : number;
               if (number < 0) _valorController.text = '0';
               vm.notifyListeners();
-            }, keyboard: TextInputType.number),
+            }, keyboard: TextInputType.number, key: ValueKey('valor_field')),
             const SizedBox(height: 12),
             Text("Modelo de auto:", style: Theme.of(context).textTheme.titleMedium),
             for (var m in ['A', 'B', 'C'])
               _buildRadio("Modelo $m", m, vm.modeloAuto, (val) {
                 vm.modeloAuto = val!;
                 vm.notifyListeners();
-              }),
+              }, key: ValueKey('modelo_${m}_radio')),
             const SizedBox(height: 12),
             Text("Edad propietario:", style: Theme.of(context).textTheme.titleMedium),
             for (var e in ['18-23', '23-55', '55+'])
               _buildRadio(_textoEdad(e), e, vm.edadPropietario, (val) {
                 vm.edadPropietario = val!;
                 vm.notifyListeners();
-              }),
+              }, key: ValueKey('edad_${e}_radio')),
             const SizedBox(height: 12),
             _buildInput("Número de accidentes", _accidentesController, (val) {
               final number = int.tryParse(val) ?? 0;
               vm.accidentes = number < 0 ? 0 : number;
               if (number < 0) _accidentesController.text = '0';
               vm.notifyListeners();
-            }, keyboard: TextInputType.number),
+            }, keyboard: TextInputType.number, key: ValueKey('accidentes_field')),
             const SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
+                key: ValueKey('crear_poliza_button'), // ValueKey para pruebas
                 style: ElevatedButton.styleFrom(
                   shape: const StadiumBorder(),
                   padding: const EdgeInsets.symmetric(vertical: 14),
@@ -120,6 +121,7 @@ class _PolizaViewState extends State<PolizaView> {
             ),
             const SizedBox(height: 20),
             Row(
+              key: ValueKey('costo_total_row'), // ValueKey para pruebas
               children: [
                 const Text(
                   "Costo total:",
@@ -127,7 +129,8 @@ class _PolizaViewState extends State<PolizaView> {
                 ),
                 const SizedBox(width: 10),
                 Text(
-                  "\$${vm.costoTotal.toStringAsFixed(2)}",
+                  "\${vm.costoTotal.toStringAsFixed(2)}",
+                  key: ValueKey('costo_total_text'), // ValueKey para pruebas
                   style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),
                 ),
               ],
@@ -139,8 +142,9 @@ class _PolizaViewState extends State<PolizaView> {
   }
 
   Widget _buildInput(String label, TextEditingController controller, Function(String) onChanged,
-      {TextInputType? keyboard}) {
+      {TextInputType? keyboard, Key? key}) {
     return TextField(
+      key: key, // Agregar key parameter
       controller: controller,
       keyboardType: keyboard,
       onChanged: onChanged,
@@ -154,8 +158,9 @@ class _PolizaViewState extends State<PolizaView> {
     );
   }
 
-  Widget _buildRadio(String label, String value, String groupValue, Function(String?) onChanged) {
+  Widget _buildRadio(String label, String value, String groupValue, Function(String?) onChanged, {Key? key}) {
     return RadioListTile(
+      key: key, // Agregar key parameter
       title: Text(label),
       value: value,
       groupValue: groupValue,
